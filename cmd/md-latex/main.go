@@ -18,7 +18,7 @@ var (
 	flagIn      = flag.String("i", "", "input file (default: stdin)")
 	flagOut     = flag.String("o", "", "output file (default: stdout)")
 	flagImgDir  = flag.String("img-dir", "", "directory to generate images to (default: PWD)")
-	flagCvtPath = flag.String("tex2svg", "./tex2svg", "location of tex2svg utility")
+	flagCvtPath = flag.String("tex2svg", "", "location of tex2svg utility (default: same directory as binary)")
 )
 
 func main() {
@@ -174,6 +174,10 @@ func createSVG(eq, outFileDir, outDir string, inline bool) (string, string, erro
 }
 
 func genEqSVG(eq string, out io.Writer, inline bool) error {
+	cvtPath := *flagCvtPath
+	if cvtPath == "" {
+		cvtPath = filepath.Join(filepath.Dir(os.Args[0]), "tex2svg")
+	}
 	cmd := exec.Command(
 		*flagCvtPath,
 		fmt.Sprintf("--inline=%t", inline),

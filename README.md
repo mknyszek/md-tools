@@ -27,7 +27,7 @@ Unfortunately this tool isn't easy to move around because it needs to reference
 a pile of Javascript, so I recommend invoking this tool via
 
 ```
-go run ./cmd/md-latex
+go run ./cmd/md-latex -tex2svg ./cmd/md-latex/tex2svg
 ```
 
 for the time being.
