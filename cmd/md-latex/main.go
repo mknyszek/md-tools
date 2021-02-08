@@ -61,7 +61,7 @@ func run() error {
 			return err
 		}
 		defer outFile.Close()
-		outFileDir, err = filepath.Abs(outPath)
+		outFileDir, err = filepath.Abs(filepath.Dir(outPath))
 		if err != nil {
 			return err
 		}
